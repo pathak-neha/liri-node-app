@@ -1,0 +1,21 @@
+
+QUERY:
+You searched the OMBD for the following terms: "princess diaries"
+RESULTS:
+Name: The Princess Diaries
+Year: 2001
+Ratings: 
+     Internet Movie Database: 6.3/10
+     Rotten Tomatoes: 47%
+Country: USA
+Language: English, Dutch, Italian
+Actors: Julie Andrews, Anne Hathaway, Hector Elizondo, Heather Matarazzo
+------------------------------------------
+QUERY:
+You searched the Spotify Database for the following terms: "uprising muse"
+RESULTS:
+Song Title: Uprising
+Artist: Muse
+Album: The Resistance
+Preview on Spotify: https://p.scdn.co/mp3-preview/104ad0ea32356b9f3b2e95a8610f504c90b0026b?cid=8ea4e260de044cf59b904e52dba8279b
+------------------------------------------

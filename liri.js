@@ -1,6 +1,7 @@
 var env = require("dotenv").config();
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var request = require('request')
 var fs = require('fs');
 
 var keys = require('./keys')
@@ -43,23 +44,56 @@ if (searchParam == 'spotify-this-song') {
             ].join('\n');
 
             let divider = '\n------------------------------------------';
-            
+
             fs.appendFile('log.txt', queryText + songData + divider, function (err) {
                 if (err) {
                     throw err;
                 }
                 console.log(queryText);
-                console.log(songData +divider);
+                console.log(songData + divider);
             })
         })
         .catch(function (err) {
             console.log(err);
         });
-    fs.appendFile('log.txt', )
 }
 
 if (searchParam == 'movie-this') {
-    // do this
+    request('http://www.omdbapi.com/?t=' + searchTerm + '&apikey=trilogy', function (error, response, body) {
+
+        let obj = JSON.parse(body);
+        var title = obj.Title;
+        var year = obj.Year;
+        var rating1 = obj.Ratings[0];
+        var rating2 = obj.Ratings[1];
+        var country = obj.Country;
+        var lang = obj.Language;
+        var actors = obj.Actors;
+
+        let queryText = '\nQUERY:\nYou searched the OMBD for the following terms: "' + searchTerm + '"';
+
+        var movieData = [
+            '\nRESULTS:',
+            'Name: ' + title,
+            'Year: ' + year,
+            'Ratings: ',
+            '     '+rating1.Source + ': ' + rating1.Value,
+            '     '+rating2.Source + ': ' + rating2.Value,
+            'Country: ' + country,
+            'Language: ' + lang,
+            'Actors: ' + actors
+        ].join('\n')
+        let divider = '\n------------------------------------------';
+
+        fs.appendFile('log.txt', queryText + movieData + divider, function (err) {
+            if (err) {
+                throw err;
+            }
+            console.log(queryText);
+            console.log(movieData + divider);
+        });
+
+    });
 }
 
 if (searchParam == 'do-what-it-says') {
